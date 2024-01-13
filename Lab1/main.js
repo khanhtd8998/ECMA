@@ -46,7 +46,7 @@ btnAdd.addEventListener('click', () => {
     let liElement = document.createElement('li');
     liElement.innerHTML = `${info.id} - ${info.name} - ${info.gender}`;
     target2.appendChild(liElement);
-    
+
 });
 //4------------------------------------------------------------------------------------------------
 let classRoom = [
@@ -60,31 +60,51 @@ let classRoom = [
     'Hồ Sỹ Hùng',
     'đoàn vua dep trai vua hoc gioi Hữu Quý']
 //4.1   
-for(let x of classRoom) {
+for (let x of classRoom) {
     let firstName = x.slice(0, x.indexOf(" "));
-    let secondName = x.slice(x.lastIndexOf(" ")+1);
+    let secondName = x.slice(x.lastIndexOf(" ") + 1);
     console.log(firstName, secondName);
 }
 
 //4.2
 let nameSv = 'Trần Duy Khánh';
 let indexRandom = parseInt(Math.random() * (classRoom.length + 1));
-classRoom.splice(indexRandom, 0 , nameSv);
+classRoom.splice(indexRandom, 0, nameSv);
 console.log(classRoom);
 
 //4.3
-let nameDelete = "Hồ Sỹ Hùng";
-var indexNameDelete = 0;
-for(let x of classRoom) {
-    if(x === nameDelete){
-        indexNameDelete = classRoom.indexOf(x);
-        classRoom.splice(indexNameDelete,1);
-        console.log(x);
-        console.log(indexNameDelete);
-    }
-    
+// let nameDelete = "Hồ Sỹ Hùng";
+// var indexNameDelete = 0;
+// for(let x of classRoom) {
+//     if(x === nameDelete){
+//         indexNameDelete = classRoom.indexOf(x);
+//         classRoom.splice(indexNameDelete,1);
+//         console.log(x);
+//         console.log(indexNameDelete);
+//     }
+
+// }
+// console.log(classRoom);
+
+//4.4
+function removeDiacritics(str) {
+    return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
 }
-console.log(classRoom);
+function findName(findName) {
+    var arrOutput = classRoom.filter(function (name) {
+        var nameInClass = removeDiacritics(name).toLowerCase();
+        var findNameNew = removeDiacritics(findName).toLowerCase();
+        console.log(nameInClass, findNameNew);
+
+        return nameInClass.includes(findNameNew)
+        // return nameInClass.includes(findNameNew) && name.trim().length === findName.trim().length;
+        
+    });
+    console.log(arrOutput);
+}
+findName('tung')
+
+
 
 
 
