@@ -57,7 +57,6 @@ let classRoom = [
     'đoàn Minh Tùng',
     'Hồ Sỹ Hùng',
     'Lê Trung Hiếu',
-    'Hồ Sỹ Hùng',
     'đoàn vua dep trai vua hoc gioi Hữu Quý']
 //4.1   
 for (let x of classRoom) {
@@ -72,19 +71,17 @@ let indexRandom = parseInt(Math.random() * (classRoom.length + 1));
 classRoom.splice(indexRandom, 0, nameSv);
 console.log(classRoom);
 
-//4.3
-// let nameDelete = "Hồ Sỹ Hùng";
-// var indexNameDelete = 0;
-// for(let x of classRoom) {
-//     if(x === nameDelete){
-//         indexNameDelete = classRoom.indexOf(x);
-//         classRoom.splice(indexNameDelete,1);
-//         console.log(x);
-//         console.log(indexNameDelete);
-//     }
+4.3
+let nameDelete = "Trần Duy Khánh";
+var indexNameDelete = 0;
+for(let x of classRoom) {
+    if(x === nameDelete){
+        indexNameDelete = classRoom.indexOf(x);
+        classRoom.splice(indexNameDelete,1);
+    }
 
-// }
-// console.log(classRoom);
+}
+console.log(classRoom);
 
 //4.4
 function removeDiacritics(str) {
@@ -92,17 +89,14 @@ function removeDiacritics(str) {
 }
 function findName(findName) {
     var arrOutput = classRoom.filter(function (name) {
-        var nameInClass = removeDiacritics(name).toLowerCase();
-        var findNameNew = removeDiacritics(findName).toLowerCase();
-        console.log(nameInClass, findNameNew);
-
-        return nameInClass.includes(findNameNew)
-        // return nameInClass.includes(findNameNew) && name.trim().length === findName.trim().length;
-        
+        var lengthName = name.slice(name.lastIndexOf(' ') + 1).length;
+        var nameInClass = removeDiacritics(name).trim().toLowerCase();
+        var findNameNew = removeDiacritics(findName).trim().toLowerCase();
+        return nameInClass.includes(findNameNew) && lengthName == findName.trim().length;
     });
     console.log(arrOutput);
 }
-findName('tung')
+findName('tu')
 
 
 
