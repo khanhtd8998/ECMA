@@ -74,29 +74,33 @@ console.log(classRoom);
 4.3
 let nameDelete = "Trần Duy Khánh";
 var indexNameDelete = 0;
-for(let x of classRoom) {
-    if(x === nameDelete){
+for (let x of classRoom) {
+    if (x === nameDelete) {
         indexNameDelete = classRoom.indexOf(x);
-        classRoom.splice(indexNameDelete,1);
+        classRoom.splice(indexNameDelete, 1);
     }
 
 }
 console.log(classRoom);
 
 //4.4
-function removeDiacritics(str) {
-    return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
-}
+
 function findName(findName) {
     var arrOutput = classRoom.filter(function (name) {
-        var lengthName = name.slice(name.lastIndexOf(' ') + 1).length;
-        var nameInClass = removeDiacritics(name).trim().toLowerCase();
-        var findNameNew = removeDiacritics(findName).trim().toLowerCase();
-        return nameInClass.includes(findNameNew) && lengthName == findName.trim().length;
+        var nameInClass =
+            name.slice(name.lastIndexOf(' ') + 1)
+                .toLowerCase()
+                .normalize('NFD')
+                .replace(/[\u0300-\u036f]/g, '');
+        var findNameNew =
+            findName.toLowerCase()
+                .normalize('NFD')
+                .replace(/[\u0300-\u036f]/g, '');;
+        return nameInClass === findNameNew;
     });
     console.log(arrOutput);
 }
-findName('tu')
+findName('hung')
 
 
 
